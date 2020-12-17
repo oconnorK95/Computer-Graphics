@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Model 
+public class Model
 {
-    public enum default_primitives {  Cube }
+    public enum default_primitives { Cube }
     public enum letter { K }
 
     public List<Vector3> _vertices;
@@ -14,7 +14,8 @@ public class Model
     public List<int> _texture_index_list;
     public List<Vector3> _face_normals;
 
-    public Model(default_primitives shape)
+
+    /*public Model(default_primitives shape)
     {
         switch (shape)
         {
@@ -27,16 +28,16 @@ public class Model
 
                 break;
         }    }
-
+        */
     public Model(letter K)
     {
-        switch (shape)
+        switch (K)
         {
             case letter.K:
                 initialize_lists();
-                add_letter_K_vertices();
-                add_letter_K_texture_coordinates();
-                add_letter_K-indices_and_normals();
+                Add_letter_K_vertices();
+                add_texture_coordinates();
+                add_indices_and_normals();
 
 
                 break;
@@ -83,59 +84,59 @@ public class Model
         _texture_coordinates.Add(new Vector2(0.5f, 0.6f));
         _texture_coordinates.Add(new Vector2(0.6f, 0.6f));
         _texture_coordinates.Add(new Vector2(0.7f, 0.6f));
-        _texture_coordinates.Add(new Vector2(0.8f, 0.6f)); 
+        _texture_coordinates.Add(new Vector2(0.8f, 0.6f));
     }
 
     private void add_indices_and_normals()
     {
         //
-        _index_list.Add(0);     _texture_index_list.Add(32);
-        _index_list.Add(1);     _texture_index_list.Add(31);   _face_normals.Add(new Vector3(0,0,-1));
-        _index_list.Add(2);     _texture_index_list.Add(23); // 
-        _index_list.Add(0);     _texture_index_list.Add(32);
-        _index_list.Add(2);     _texture_index_list.Add(23);    _face_normals.Add(new Vector3(0, 0, -1));
-        _index_list.Add(3);     _texture_index_list.Add(24); // 
+        _index_list.Add(0); _texture_index_list.Add(32);
+        _index_list.Add(1); _texture_index_list.Add(31); _face_normals.Add(new Vector3(0, 0, -1));
+        _index_list.Add(2); _texture_index_list.Add(23); // 
+        _index_list.Add(0); _texture_index_list.Add(32);
+        _index_list.Add(2); _texture_index_list.Add(23); _face_normals.Add(new Vector3(0, 0, -1));
+        _index_list.Add(3); _texture_index_list.Add(24); // 
 
-        _index_list.Add(2);     _texture_index_list.Add(24);
-        _index_list.Add(3);     _texture_index_list.Add(23); _face_normals.Add(new Vector3(0, 0, -1));
-        _index_list.Add(8);     _texture_index_list.Add(17); // 
-        _index_list.Add(2);     _texture_index_list.Add(24);
-        _index_list.Add(7);     _texture_index_list.Add(18); _face_normals.Add(new Vector3(0, 0, -1));
-        _index_list.Add(8);     _texture_index_list.Add(17); // 
+        _index_list.Add(2); _texture_index_list.Add(24);
+        _index_list.Add(3); _texture_index_list.Add(23); _face_normals.Add(new Vector3(0, 0, -1));
+        _index_list.Add(8); _texture_index_list.Add(17); // 
+        _index_list.Add(2); _texture_index_list.Add(24);
+        _index_list.Add(7); _texture_index_list.Add(18); _face_normals.Add(new Vector3(0, 0, -1));
+        _index_list.Add(8); _texture_index_list.Add(17); // 
 
-        _index_list.Add(7);     _texture_index_list.Add(18);
-        _index_list.Add(8);     _texture_index_list.Add(17); _face_normals.Add(new Vector3(0,0, -1));
-        _index_list.Add(9);     _texture_index_list.Add(12); // 
-        _index_list.Add(8);     _texture_index_list.Add(17);
-        _index_list.Add(9);     _texture_index_list.Add(12); _face_normals.Add(new Vector3(0, 0, -1));
-        _index_list.Add(10);     _texture_index_list.Add(11); // 
+        _index_list.Add(7); _texture_index_list.Add(18);
+        _index_list.Add(8); _texture_index_list.Add(17); _face_normals.Add(new Vector3(0, 0, -1));
+        _index_list.Add(9); _texture_index_list.Add(12); // 
+        _index_list.Add(8); _texture_index_list.Add(17);
+        _index_list.Add(9); _texture_index_list.Add(12); _face_normals.Add(new Vector3(0, 0, -1));
+        _index_list.Add(10); _texture_index_list.Add(11); // 
 
         //
-        _index_list.Add(4);     _texture_index_list.Add(30);
-        _index_list.Add(5);     _texture_index_list.Add(29); _face_normals.Add(new Vector3(0, 0, -1));
-        _index_list.Add(3);     _texture_index_list.Add(23); // 
-        _index_list.Add(5);     _texture_index_list.Add(29);
-        _index_list.Add(6);     _texture_index_list.Add(22); _face_normals.Add(new Vector3(0, 0, -1));
-        _index_list.Add(3);     _texture_index_list.Add(23);// 
+        _index_list.Add(4); _texture_index_list.Add(30);
+        _index_list.Add(5); _texture_index_list.Add(29); _face_normals.Add(new Vector3(0, 0, -1));
+        _index_list.Add(3); _texture_index_list.Add(23); // 
+        _index_list.Add(5); _texture_index_list.Add(29);
+        _index_list.Add(6); _texture_index_list.Add(22); _face_normals.Add(new Vector3(0, 0, -1));
+        _index_list.Add(3); _texture_index_list.Add(23);// 
 
-        _index_list.Add(3);     _texture_index_list.Add(23);
-        _index_list.Add(6);     _texture_index_list.Add(22); _face_normals.Add(new Vector3(0, 0, -1));
-        _index_list.Add(11);     _texture_index_list.Add(16); //
-        _index_list.Add(3);     _texture_index_list.Add(23);
-        _index_list.Add(11);     _texture_index_list.Add(16); _face_normals.Add(new Vector3(0, 0, -1));
-        _index_list.Add(8);     _texture_index_list.Add(17); // 
+        _index_list.Add(3); _texture_index_list.Add(23);
+        _index_list.Add(6); _texture_index_list.Add(22); _face_normals.Add(new Vector3(0, 0, -1));
+        _index_list.Add(11); _texture_index_list.Add(16); //
+        _index_list.Add(3); _texture_index_list.Add(23);
+        _index_list.Add(11); _texture_index_list.Add(16); _face_normals.Add(new Vector3(0, 0, -1));
+        _index_list.Add(8); _texture_index_list.Add(17); // 
 
-        _index_list.Add(8);     _texture_index_list.Add(17);
-        _index_list.Add(11);     _texture_index_list.Add(16); _face_normals.Add(new Vector3(0, 0, -1));
-        _index_list.Add(13);     _texture_index_list.Add(9); 
-        _index_list.Add(8);     _texture_index_list.Add(17);
-        _index_list.Add(13);     _texture_index_list.Add(9); _face_normals.Add(new Vector3(0, 0, -1));
-        _index_list.Add(12);     _texture_index_list.Add(10);
+        _index_list.Add(8); _texture_index_list.Add(17);
+        _index_list.Add(11); _texture_index_list.Add(16); _face_normals.Add(new Vector3(0, 0, -1));
+        _index_list.Add(13); _texture_index_list.Add(9);
+        _index_list.Add(8); _texture_index_list.Add(17);
+        _index_list.Add(13); _texture_index_list.Add(9); _face_normals.Add(new Vector3(0, 0, -1));
+        _index_list.Add(12); _texture_index_list.Add(10);
 
         //TOPS 
-        _index_list.Add(0); _texture_index_list.Add(32); 
+        _index_list.Add(0); _texture_index_list.Add(32);
         _index_list.Add(1); _texture_index_list.Add(31); _face_normals.Add(new Vector3(0, 1, 0));
-        _index_list.Add(14); _texture_index_list.Add(36); 
+        _index_list.Add(14); _texture_index_list.Add(36);
         _index_list.Add(0); _texture_index_list.Add(32);
         _index_list.Add(14); _texture_index_list.Add(36); _face_normals.Add(new Vector3(0, 1, 0));
         _index_list.Add(15); _texture_index_list.Add(35);
@@ -248,93 +249,90 @@ public class Model
         _face_normals = new List<Vector3>();
     }
 
-        //indices
+    //indices
     private void add_letter_K_indices()
     {
         //Right
-        _index_list.Add(0); 
+        _index_list.Add(0);
         _index_list.Add(1);
         _index_list.Add(2);
-        _index_list.Add(0); 
-        _index_list.Add(2); 
-        _index_list.Add(3); 
-
-        _index_list.Add(2); 
-        _index_list.Add(3); 
-        _index_list.Add(7); 
+        _index_list.Add(0);
         _index_list.Add(2);
-        _index_list.Add(7); 
-        _index_list.Add(8); 
-
-        _index_list.Add(7); 
-        _index_list.Add(8); 
-        _index_list.Add(9); 
-        _index_list.Add(8);
-        _index_list.Add(9); 
-        _index_list.Add(10); 
-    
-        //Left
-        _index_list.Add(4); 
-        _index_list.Add(5);
-        _index_list.Add(3); 
-        _index_list.Add(5); 
-        _index_list.Add(6); 
         _index_list.Add(3);
 
-        _index_list.Add(3); 
-        _index_list.Add(6); 
-        _index_list.Add(11); 
-        _index_list.Add(3); 
-        _index_list.Add(11); 
-        _index_list.Add(8); 
+        _index_list.Add(2);
+        _index_list.Add(3);
+        _index_list.Add(7);
+        _index_list.Add(2);
+        _index_list.Add(7);
+        _index_list.Add(8);
 
-        _index_list.Add(8); 
-        _index_list.Add(11); 
-        _index_list.Add(13); 
-        _index_list.Add(8); 
+        _index_list.Add(7);
+        _index_list.Add(8);
+        _index_list.Add(9);
+        _index_list.Add(8);
+        _index_list.Add(9);
+        _index_list.Add(10);
+
+        //Left
+        _index_list.Add(4);
+        _index_list.Add(5);
+        _index_list.Add(3);
+        _index_list.Add(5);
+        _index_list.Add(6);
+        _index_list.Add(3);
+
+        _index_list.Add(3);
+        _index_list.Add(6);
+        _index_list.Add(11);
+        _index_list.Add(3);
+        _index_list.Add(11);
+        _index_list.Add(8);
+
+        _index_list.Add(8);
+        _index_list.Add(11);
         _index_list.Add(13);
-        _index_list.Add(12); 
+        _index_list.Add(8);
+        _index_list.Add(13);
+        _index_list.Add(12);
+    }
 
+    private void Add_letter_K_vertices()
+    {
+        _vertices.Add(new Vector3(0, 0, -1));//bottom left front
+        _vertices.Add(new Vector3(1, 0, -1));
+        _vertices.Add(new Vector3(0, 2, -1));//centre left front
+        _vertices.Add(new Vector3(1, 2, -1));
+        _vertices.Add(new Vector3(0, 3, -1));//centre left front
+        _vertices.Add(new Vector3(1, 3, -1));
+        _vertices.Add(new Vector3(0, 5, -1));//top left front
+        _vertices.Add(new Vector3(1, 5, -1));
 
+        _vertices.Add(new Vector3(2, 0, -1));//bottom right front
+        _vertices.Add(new Vector3(2, 5, -1));//top right front
+        _vertices.Add(new Vector3(3, 0, -1));//bottom right front
+        _vertices.Add(new Vector3(3, 5, -1));//top right front
+        _vertices.Add(new Vector3(2, 2, -1));//centre right front
+        _vertices.Add(new Vector3(2, 3, -1));//centre right front
 
+        _vertices.Add(new Vector3(0, 0, 1));//bottom left back
+        _vertices.Add(new Vector3(1, 0, 1));
+        _vertices.Add(new Vector3(0, 2, 1));//centre left back
+        _vertices.Add(new Vector3(1, 2, 1));
+        _vertices.Add(new Vector3(0, 3, 1));//centre left back
+        _vertices.Add(new Vector3(1, 3, 1));
+        _vertices.Add(new Vector3(0, 5, 1));//top left back
+        _vertices.Add(new Vector3(1, 5, 1));
+
+        _vertices.Add(new Vector3(2, 0, 1));//bottom right back
+        _vertices.Add(new Vector3(2, 5, 1));//top right back
+        _vertices.Add(new Vector3(3, 0, 1));//bottom right back
+        _vertices.Add(new Vector3(3, 5, 1));//top right back
+        _vertices.Add(new Vector3(2, 2, 1));//centre right back
+        _vertices.Add(new Vector3(2, 3, 1));//centre right back
 
 
 
     }
 }
-    private void add_letter_K_vertices() {
-    _vertices.Add(new Vector3(0, 0, -1));//bottom left front
-    _vertices.Add(new Vector3(1, 0, -1));
-    _vertices.Add(new Vector3(0, 2, -1));//centre left front
-    _vertices.Add(new Vector3(1, 2, -1));
-    _vertices.Add(new Vector3(0, 3, -1));//centre left front
-    _vertices.Add(new Vector3(1, 3, -1));
-    _vertices.Add(new Vector3(0, 5, -1));//top left front
-    _vertices.Add(new Vector3(1, 5, -1));
 
-    _vertices.Add(new Vector3(2, 0, -1));//bottom right front
-    _vertices.Add(new Vector3(2, 5, -1));//top right front
-    _vertices.Add(new Vector3(3, 0, -1));//bottom right front
-    _vertices.Add(new Vector3(3, 5, -1));//top right front
-    _vertices.Add(new Vector3(2, 2, -1));//centre right front
-    _vertices.Add(new Vector3(2, 3, -1));//centre right front
-
-    _vertices.Add(new Vector3(0, 0, 1));//bottom left back
-    _vertices.Add(new Vector3(1, 0, 1));
-    _vertices.Add(new Vector3(0, 2, 1));//centre left back
-    _vertices.Add(new Vector3(1, 2, 1));
-    _vertices.Add(new Vector3(0, 3, 1));//centre left back
-    _vertices.Add(new Vector3(1, 3, 1));
-    _vertices.Add(new Vector3(0, 5, 1));//top left back
-    _vertices.Add(new Vector3(1, 5, 1));
-
-    _vertices.Add(new Vector3(2, 0, 1));//bottom right back
-    _vertices.Add(new Vector3(2, 5, 1));//top right back
-    _vertices.Add(new Vector3(3, 0, 1));//bottom right back
-    _vertices.Add(new Vector3(3, 5, 1));//top right back
-    _vertices.Add(new Vector3(2, 2, 1));//centre right back
-    _vertices.Add(new Vector3(2, 3, 1));//centre right back
-
-
-
-}

@@ -1,0 +1,7 @@
+﻿[*.cs]
+
+# CS0006: Metadata file 'C:\Users\Keelan\Desktop\MyGitRepo\Computer-Graphics\3d Graphics\Temp\bin\Debug\Unity.Rider.Editor.dll' could not be found
+dotnet_diagnostic.CS0006.severity = none
+
+# CS2007: Unrecognized option: '/analyzerconfig:"C:\Users\Keelan\Desktop\MyGitRepo\Computer-Graphics\3d Graphics\.editorconfig"'
+dotnet_diagnostic.CS2007.severity = silent

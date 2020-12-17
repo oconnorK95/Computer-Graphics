@@ -5,6 +5,7 @@ Call the method, passing your model into it, (in start)
 Import the texture you wish to use
 Run unity, while running attach the texture to the newly created gameobject in the scene hierarchy
 */
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,14 +16,114 @@ public class Pipeline : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Model cube = new Model(Model.default_primitives.Cube);
+        //Model cube = new Model(Model.default_primitives.Cube);
 
-        CreateUnityGameObject(cube);
+        //CreateUnityGameObject(cube);
 
-        Model k = new Model(Model.Letter.K);
-        CreateUnityGameObject(K);
-        
-        
+        Model k = new Model(Model.letter.K);
+        CreateUnityGameObject(k);
+
+        Outcode a = new Outcode(new Vector2(2f, -2f));
+        print(a.ToString());
+            
+        Vector2 start = new Vector2(2,2), end = new Vector2(-3,0); 
+        if (line_clip(ref start, ref end)) draw(start, end); //if true, rasterize
+
+        Vector2 test1 = new Vector2(1, 1);
+        Vector2 test2 = new Vector2(3, 1);
+        bool boolLineclip = line_clip(ref test1, ref test2);
+        print(boolLineclip);
+
+       // Vector2 testVec = new Vector2(2, 2);
+       // Vector2Int newVec = convertToInts(testVec);
+
+    }
+
+    //Convert vector 2 to int
+    /*public static Vector2Int convertToInts(this Vector2 v)
+    {
+        return new Vector2Int((int)v.x, (int)v.y);
+    }*/
+    
+    
+
+    private void bresenhamsAlgorithm(int x1, int y1, int x2, int y2) {
+        int dx = x2 - x1;
+        int dy = y2 - y1;
+
+        int gradient = dx / dy;
+
+        int i = 2*(dy);
+    }
+
+    private bool line_clip(ref Vector2 start, ref Vector2 end) //Testing of acceptance, each rejection and various others
+    {
+        Outcode startOutcode = new Outcode(start), endOutcode = new Outcode(end), inViewPortOutcode = new Outcode();
+
+        //Both points inside viewport
+        if ((startOutcode == inViewPortOutcode) && (endOutcode == inViewPortOutcode)) {
+            print("Trivial Acceptance");
+            return true;
+        }
+        //Not in viewport
+        if ((startOutcode * endOutcode) != inViewPortOutcode) {
+            print("Trivial reject");
+            return false;
+        }
+
+        if (startOutcode == inViewPortOutcode) {
+            return line_clip(ref end, ref start);
+        }
+
+        if (startOutcode.up) {
+            start = intercept(start, end, 0);
+            return line_clip(ref start, ref end);
+        }
+        if (startOutcode.down)
+        {
+            start = intercept(start, end, 1);
+            return line_clip(ref start, ref end);
+        }
+        if (startOutcode.left)
+        {
+            start = intercept(start, end, 2);
+            return line_clip(ref start, ref end);
+        }
+        if (startOutcode.right)
+        {
+            start = intercept(start, end, 3);
+            return line_clip(ref start, ref end);
+        }
+
+        //Return if start doesnt clip to valid point. Clip end only if start clips to valid point.
+        return line_clip(ref end, ref start);
+    }
+
+    Vector2 intercept(Vector2 start, Vector2 end, int edge) {
+        float slope = (end.y - start.y) - (end.x - start.x);
+        switch (edge) {
+
+            //Up
+            case 0:
+                return new Vector2(start.x + (1 / slope) * (1 - start.y), 1);
+                
+            //Down
+            case 1:
+                return new Vector2(start.x + (1 /slope) * (-1 - start.y), -1);
+                
+            //Left
+            case 2:
+                return new Vector2(-1, start.y + slope * (-1 - start.x));
+            //Right
+            default:
+                return new Vector2(1, start.y + slope * (1 - start.x));
+
+        }
+    }
+
+    private void draw(Vector2 start, Vector2 end)
+    {
+        throw new NotImplementedException();
     }
 
     // Update is called once per frame
